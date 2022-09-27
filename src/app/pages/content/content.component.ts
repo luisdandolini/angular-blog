@@ -1,4 +1,7 @@
+import { dataFake } from './../data/dataFake';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -7,15 +10,31 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  photoCover:string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeiMHbpng8w8Ss4h87ydMIZfAttu69RIl2RQ&usqp=CAU";
+  photoCover:string = "";
+  contentTitle:string = "";
+  contentDescription:string = "";
+  private id:string | null = "0";
 
-  contentTitle:string = "NOVO HOMEM DE FERRO";
 
-  contentDescription:string = "Nunca haverá outro Tony Stark, mas isso não significa que não possa haver um novo Homem de Ferro. O Gavião Arqueiro, interpretado por Jeremy Renner mostrou seu substituto ideal de Tony Stark, vivido por Robert Doweny Jr dentro do universo dos jovens vingadores.";
-
-  constructor() { }
+  constructor(
+    private route:ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe( value => 
+      this.id = value.get("id")  
+    )
+
+    this.setValuesToComponent(this.id)
+  }
+
+  setValuesToComponent(id:string | null) {
+    const result = dataFake.filter(article => article.id == id)[0]
+
+    this.contentTitle = result.title
+    this.contentDescription = result.description
+    this.photoCover = result.photoCover
+
   }
 
 }
