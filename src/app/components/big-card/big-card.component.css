@@ -26,3 +26,13 @@
   width: 100%;
   min-width: 600px;
 }
+
+@media screen and (max-width: 600px) {
+  .container__big-card {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .big-card__photo img{
+    min-width: 400px;
+  }
+}

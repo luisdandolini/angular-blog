@@ -22,3 +22,13 @@
 .container__small-card__separator {
   margin-top: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .container__small-card-content {
+    display: flex;
+  }
+
+  .small-card__title h1{
+    font-size: 1rem;
+  }
+}
