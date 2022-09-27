@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.small-card__title h1 {
+  font-size: 1.5rem
+}
+
 .container__small-card__separator {
   margin-top: 1rem;
 }
